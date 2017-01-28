@@ -1,5 +1,5 @@
 var io = require('socket.io-client');
-var socket = io.connect('http://10.255.6.96:3000', {reconnect: true});
+var socket = io.connect('http://10.0.0.34:3000', {reconnect: true});
 
 data = 'test'
 socket.on('login response', function(){
