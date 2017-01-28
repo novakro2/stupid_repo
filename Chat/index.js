@@ -5,13 +5,20 @@ var ip = require('ip');
 
 
 
-io.on('connection', function(socket){
-	socket.on('chat message', function(msg){
-		console.log('message: ' + msg);
-		socket.emit(msg)
-  });
+io.on('connect', function(socket){
+	socket.on('login', function(){
+		console.log('connected');
+		socket.emit('login response');
+	});
+	
+	socket.on('new message', function(data){
+		console.log('new message: %s', data);
+		socket.emit('got message')
+		socket.emit(data);
+	});
+	
 });
 
 http.listen(3000, ip.address(), function(){
-  console.log('listening on *:3000');
+  console.log('listening on %s:3000', ip.address());
 });
