@@ -69,9 +69,13 @@ HelloWorld.prototype.intentHandlers = {
     "AMAZON.HelpIntent": function (intent, session, response) {
         response.ask("You can say hello to me!", "You can say hello to me!");
     },
-    "MirrorIntent": function (intent, session, response) {
+    "WeatherIntent": function (intent, session, response) {
         //response.ask("You can control the weather display")
-        produce_message();
+        produce_message(intent, session, response, "weather");
+    },
+    "TimeIntent": function (intent, session, response) {
+        //response.ask("You can control the weather display")
+        produce_message(intent, session, response, "time");
     }
 };
 
@@ -83,17 +87,19 @@ exports.handler = function (event, context) {
 };
 
 
-function produce_message(){
+function produce_message(intent, session, response, user_request){
     var io = require('socket.io-client');
-    var socket = io.connect('http://10.255.6.96:3000', {reconnect: true});
+    var socket = io.connect('http://52.90.94.93:3000', {reconnect: true});
         
     socket.on('login response', function(){
-        socket.emit('new message','user_request'); //send user_request to the server
+        socket.emit('new message', user_request); //send user_request to the server
     });
     
     socket.on('got message', function() {
-        
-        response.tellWithCard("Weather is Displayed", "Weather Displayed On");
+        if (user_request == "weather")
+            response.tellWithCard("The weather is displayed");
+        else if (user_request == "time")
+            response.tellWithCard("The time is displayed");
         socket.disconnect();
     });
             

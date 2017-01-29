@@ -19,6 +19,6 @@ io.on('connect', function(socket){
 	
 });
 
-http.listen(3000, ip.address(), function(){
+http.listen(80, ip.address(), function(){
   console.log('listening on %s:3000', ip.address());
 });

@@ -1,8 +1,8 @@
 #!/usr/bin/python           # This is client.py file
 from socketIO_client import SocketIO, LoggingNamespace
 
-host = "10.0.0.34"       # Get local machine name
-port = 3000               # Reserve a port for your service.
+host = "catalyst.mkude.com"       # Get local machine name
+port = 3000           # Reserve a port for your service.
 
 
 def on_login_response():
