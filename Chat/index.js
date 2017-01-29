@@ -6,15 +6,16 @@ var ip = require('ip');
 
 
 io.on('connect', function(socket){
+	console.log('initial connection received...');
 	socket.on('login', function(){
 		console.log('connected');
-		socket.emit('login response');
+		io.sockets.emit('login response');
 	});
 	
 	socket.on('new message', function(data){
 		console.log('new message: %s', data);
-		socket.emit('got message')
-		socket.emit(data);
+		io.sockets.emit('new message', { jimmy: data });
+		socket.emit('got message');
 	});
 	
 });
