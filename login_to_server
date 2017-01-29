@@ -1,0 +1,1 @@
+ssh -i "ubuntu_node_js.pem" ubuntu@ec2-52-90-94-93.compute-1.amazonaws.com
